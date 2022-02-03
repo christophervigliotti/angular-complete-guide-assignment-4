@@ -2,6 +2,10 @@
 
 This is one of several repos that I created for the course "Angular - The Complete Guide (2022 Edition)". For a complete list of repos created for this course: https://gist.github.com/christophervigliotti/92e5b3b93cbe9d630d8e9d81b7eb6636 .
 
+## Current Focus
+
+Working on Requirement 3...
+
 ## Requirements, Notes
 
 ### 1. Create three new components: GameControl, Odd and Even
@@ -26,6 +30,79 @@ in app.component.html...
 ```
 
 ### 3. When starting the game, an event (holding a incrementing number) should get emitted each second (ref = setInterval())
+
+This step isn't complete but I'm happy with how I have organized my methods into "do", "handle" and "on" methods (see notes in code below).
+
+```
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-game-control',
+  templateUrl: './game-control.component.html',
+  styleUrls: ['./game-control.component.css']
+})
+export class GameControlComponent implements OnInit {
+
+  // constants
+  counter = 0;
+  interval_in_milliseconds = 1000;
+  interval_instance; // TODO: declare an empty var of type instance here?
+
+  // properties
+  timer_enabled = false;
+
+  /* 
+  methods 
+    prefix  what it does
+    ------  ------------
+    do      do a thing
+    handle  do multiple things
+    on      when a thing happens
+  */
+  doButtonState(button_id: string, enable_or_disable:string){
+    $('#' + button_id).(enable_or_disable);    
+  }
+  // 
+  doDestroyTimer(){
+    clearInterval(this.interval_instance);
+  }
+  doInitTimer(){
+    this.timer_enabled = true;
+    this.interval_instance = setInterval(function()
+      { 
+        this.counter++;
+        console.log(this.counter);
+      }, 
+      this.interval_in_milliseconds);
+  }
+  handleGameState(game_state_id:string){
+    // if there were more than two states the conditional logic here should be a case statement
+    if(game_state_id == 'start'){
+      this.doInitTimer();
+      this.doButtonState('start_button','disable');
+      this.doButtonState('stop_button','enable');
+
+    }else if(game_state_id == 'stop'){
+      this.doDestroyTimer();
+      this.doButtonState('start_button','enable');
+      this.doButtonState('stop_button','disable');
+    }
+  }
+  onClickStartGame(){
+    this.handleGameState('start');
+  }
+  onClickStopGame(){
+    this.handleGameState('stop');
+  }
+
+  // constructur, lifecycle hooks
+  constructor() {
+    // this.initTimer();
+  }
+  ngOnInit(): void {
+  }
+}
+```
 
 ### 4. The event should be listenable from outside the component
 
