@@ -79,13 +79,16 @@ game-control.component.html...
 ### 4. The event should be listenable from outside the component
 
 OK so I'm working out how to complete this requirement.  I am going to do the following outside of the scope of this game (but on this space) so that I have a command over how to pass data from one component to another.
-#### 1. Pass data from Parent Component to Child Component
 
-#### 2. Pass data from Child Component to Parent Component
+#### Deep Dive Into Passing Data Between Components
 
-#### 3. Pass data from Child Component to another Child Component (siblings)
+##### A. Pass data from Parent Component to Child Component
 
-#### 4. (I might not tackle this one but we shall see) Pass data between non-related Components (components with no direct relationship)
+##### B. Pass data from Child Component to Parent Component
+
+##### C. Pass data from Child Component to another Child Component (siblings)
+
+##### D. (I might not tackle this one but we shall see) Pass data between non-related Components (components with no direct relationship)
 * for communication between non-related components, services are used.  Like I said I might not tackle this one because I have not covered Services yet
 
 ### 5. When stopping the game, no more events should get emitted (clearInterval(ref))
