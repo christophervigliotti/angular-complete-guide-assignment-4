@@ -15,6 +15,12 @@ ng generate component game-control
 ng generate component odd
 ng generate component even
 ```
+...or using shorthand...
+```
+ng g c game-control
+ng g c odd
+ng g c even
+```
 
 ### 2. The GameControl Component should have buttons to start and stop the game
 

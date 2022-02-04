@@ -8,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class GameControlComponent implements OnInit {
 
   // constants
-  counter = 0;
-  interval_in_milliseconds = 1000;
-  interval_instance; // TODO: declare an empty var of type instance here?
+  counter: number = 0;
+  interval_in_milliseconds: number = 1000;
 
   // properties
-  timer_enabled = false;
+  interval_instance: Function; 
+  timer_enabled: boolean = false;
 
   /* 
   methods 
@@ -24,7 +24,7 @@ export class GameControlComponent implements OnInit {
     on      when a thing happens
   */
   doButtonState(button_id: string, enable_or_disable:string){
-    $('#' + button_id).(enable_or_disable);    
+    // this is not the Angular way to do it (and we don't have access to jQuery here...TODO: resolve this $('#' + button_id).(enable_or_disable);    
   }
   // 
   doDestroyTimer(){
