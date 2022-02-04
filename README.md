@@ -78,6 +78,8 @@ game-control.component.html...
 
 ### 4. The event should be listenable from outside the component
 
+TODO: current focus
+
 ### 5. When stopping the game, no more events should get emitted (clearInterval(ref))
 
 ### 6. A new Odd component should get created for every odd number emitted, the same should happen for the Even Component (on even numbers)
@@ -105,6 +107,10 @@ doHandleGameIsOver(){
 }
 ```
 ...and by changing Property Binding attribute in the start and stop buttons account for the unique game state game_over via `[disabled]="(!game_is_running || game_over)"` and `[disabled]="(game_is_running || game_over)" `
+
+* add padding to the right of the Start button
+* add a reset game button
+* add a high score
 
 ## Up And Running
 ```

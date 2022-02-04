@@ -31,8 +31,8 @@ export class GameControlComponent implements OnInit {
     this.doHandleGameIsOver();
   }
   doHandleGameIsOver(){
-    if(this.number_of_lives == 1){
-        console.log('doGameIsOver');
+    if(!this.number_of_lives){
+        console.log('doHandleGameIsOver');
         this.game_over = true;
       }
   }
