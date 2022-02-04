@@ -108,9 +108,17 @@ doHandleGameIsOver(){
 ```
 ...and by changing Property Binding attribute in the start and stop buttons account for the unique game state game_over via `[disabled]="(!game_is_running || game_over)"` and `[disabled]="(game_is_running || game_over)" `
 
+...splash in an ngIf (with an else condition) just to get some more practice with that...
+
+```
+<p *ngIf="game_over;else game_not_over">You can no longer do it.  GAME OVER!</p><!-- this is a directive -->
+<ng-template #game_not_over><p>You can do it!</p></ng-template>
+```
+
 * add padding to the right of the Start button
 * add a reset game button
 * add a high score
+* shoehorn in a random ngClass call since I am reviewing past lesson `[ngClass]="{you_can_do_it: 1 == 1}"` applies class you_can_do_it if 1 is equal to 1 lol
 
 ## Up And Running
 ```

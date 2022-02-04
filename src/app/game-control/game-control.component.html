@@ -1,20 +1,29 @@
-<button 
-    class="btn btn-primary mr-5"
-    [disabled]="(game_is_running || game_over)" 
-    (click)="onClickGameButton($event)" 
-    id="start_button"
->Start</button>
+<div [ngStyle]="{backgroundColor: getBackgroundColor()}">
+    <button 
+        class="btn btn-primary mr-5"
+        [disabled]="(game_is_running || game_over)" 
+        (click)="onClickGameButton($event)" 
+        id="start_button"
+    >Start</button>
 
-<button 
-    class="btn btn-primary" 
-    [disabled]="(!game_is_running || game_over)"
-    (click)="onClickGameButton($event)"
-    id="stop_button"
->Stop</button>
+    <button 
+        class="btn btn-primary" 
+        [disabled]="(!game_is_running || game_over)"
+        (click)="onClickGameButton($event)"
+        id="stop_button"
+    >Stop</button>
 
-<p>{{game_state_text}}</p>
+    <p 
+        [ngClass]="{you_can_do_it: 1 == 1}"
+    >{{game_state_text}}</p>
 
-<p *ngIf="">GAME OVER!</p><!-- this is a directive -->
+    <p *ngIf="game_over;else game_not_over">You can no longer do it.  GAME OVER!</p><!-- this is a directive -->
+    <ng-template #game_not_over><p>You can do it!</p></ng-template>
+    <!--
+        playing around with ngFor
+        <p *ngFor="let latest_element of console_log_calls" style="background-color:#BEBEBE;">{{latest_element}}</p>
+    -->
+</div>
 <!--
 TODO: why isn't mr-5 applying a margin to the "Start Game" button?  Section 23 of Angular class may help?
 
