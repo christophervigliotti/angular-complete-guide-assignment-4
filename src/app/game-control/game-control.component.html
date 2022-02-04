@@ -1,17 +1,20 @@
 <button 
     class="btn btn-primary mr-5"
-    [disabled]="game_is_running" 
+    [disabled]="(game_is_running || game_over)" 
     (click)="onClickGameButton($event)" 
     id="start_button"
 >Start</button>
+
 <button 
     class="btn btn-primary" 
-    [disabled]="!game_is_running"
+    [disabled]="(!game_is_running || game_over)"
     (click)="onClickGameButton($event)"
     id="stop_button"
 >Stop</button>
+
 <p>{{game_state_text}}</p>
 
+<p *ngIf="">GAME OVER!</p><!-- this is a directive -->
 <!--
 TODO: why isn't mr-5 applying a margin to the "Start Game" button?  Section 23 of Angular class may help?
 

@@ -18,6 +18,7 @@ export class GameControlComponent implements OnInit {
   interval_instance: any; // TODO: need a better (more specific) way of declaring the type here
   interval_in_milliseconds: number = 1000;
   number_of_lives: number = 3;
+  game_over: boolean = false;
 
   // methods
   doDestroyTimer(){
@@ -27,6 +28,13 @@ export class GameControlComponent implements OnInit {
     clearInterval(this.interval_instance);
     this.counter = 0;
     (odd_or_even == 'even')?(this.interval_in_milliseconds = Math.max((this.interval_in_milliseconds - 150),100)):'do_nothing';
+    this.doHandleGameIsOver();
+  }
+  doHandleGameIsOver(){
+    if(this.number_of_lives == 1){
+        console.log('doGameIsOver');
+        this.game_over = true;
+      }
   }
   doInitTimer(){
     console.log('doInitTimer');
