@@ -88,9 +88,9 @@ game-control.component.html...
 
 ### X. Extra Credit (Requirements that I made up)
 
-* disable start button if game is running
-* disable stop button if game is not running
-* display the current game state ala 'the game is running' / 'the game is not running'
+* disable start button if game is running - handled via `[disabled]="!game_is_running"`
+* disable stop button if game is not running - handled via `[disabled]="game_is_running"`
+* display the current game state ala 'the game is running' / 'the game is not running' - `<p>{{game_state_text}}</p>` updates via `this.game_state_text = (this.game_is_running)?this.game_state_text_yes:this.game_state_text_no;` 
 
 ## Up And Running
 ```
