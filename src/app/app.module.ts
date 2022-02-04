@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { GameControlComponent } from './game-control/game-control.component';
 import { OddComponent } from './odd/odd.component';
 import { EvenComponent } from './even/even.component';
+import { Child1Component } from './child1/child1.component';
+import { Child2Component } from './child2/child2.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameControlComponent,
     OddComponent,
-    EvenComponent
+    EvenComponent,
+    Child1Component,
+    Child2Component
   ],
   imports: [
     BrowserModule,

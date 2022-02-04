@@ -9,5 +9,35 @@
     <div class="col-xs-12">
       <app-game-control></app-game-control>
     </div>
+    <div class="col-xs-6">
+      <app-even></app-even>
+    </div>
+    <div class="col-xs-6">
+      <app-odd></app-odd>
+    </div>
+
+    <!--- deep dive (not part of main assignment) -->
+    <div class="col-xs-12">
+      <hr />
+      <h2 class="display-2">4.A Deep Dive Into Passing Data Between Components</h2>
+      <h3 class="display-3">4.A.1 Pass data from Parent Component to Child Component</h3>
+      <form>
+        <div class="form-group">
+          <input 
+            type="text"
+            [(ngModel)]="currentMsgToChild1" 
+            name="currentMsgToChild1" 
+            placeholder="type in a thing" 
+            class="form-control"
+          />
+          <input 
+            type="reset" 
+            class="btn btn-primary"
+          />
+        </div>
+      </form>
+      <app-child1 [msgFromParent1]='currentMsgToChild1'></app-child1>
+      <h3>4.A.2 Pass data from Child Component to Parent Component</h3>
+    </div>
   </div>
 </div>
