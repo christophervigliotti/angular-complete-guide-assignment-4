@@ -24,90 +24,56 @@ ng g c even
 
 ### 2. The GameControl Component should have buttons to start and stop the game
 
-in game-control.component.html...
+game-control.component.html...
 ```
 <button class="btn btn-primary">Start Game</button>
 <button class="btn btn-primary">Stop Game</button>
 ```
 
-in app.component.html...
+app.component.html...
 ```
 <app-game-control></app-game-control>
 ```
 
 ### 3. When starting the game, an event (holding a incrementing number) should get emitted each second (ref = setInterval())
 
-This step isn't complete but I'm happy with how I have organized my methods into "do", "handle" and "on" methods (see notes in code below).
-
+game-control.component.ts...
 ```
-import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-game-control',
-  templateUrl: './game-control.component.html',
-  styleUrls: ['./game-control.component.css']
-})
-export class GameControlComponent implements OnInit {
-
-  // constants
-  counter = 0;
-  interval_in_milliseconds = 1000;
-  interval_instance; // TODO: declare an empty var of type instance here?
-
-  // properties
-  timer_enabled = false;
-
-  /* 
-  methods 
-    prefix  what it does
-    ------  ------------
-    do      do a thing
-    handle  do multiple things
-    on      when a thing happens
-  */
-  doButtonState(button_id: string, enable_or_disable:string){
-    $('#' + button_id).(enable_or_disable);    
-  }
-  // 
-  doDestroyTimer(){
-    clearInterval(this.interval_instance);
-  }
-  doInitTimer(){
-    this.timer_enabled = true;
-    this.interval_instance = setInterval(function()
-      { 
-        this.counter++;
-        console.log(this.counter);
-      }, 
-      this.interval_in_milliseconds);
-  }
-  handleGameState(game_state_id:string){
-    // if there were more than two states the conditional logic here should be a case statement
-    if(game_state_id == 'start'){
-      this.doInitTimer();
-      this.doButtonState('start_button','disable');
-      this.doButtonState('stop_button','enable');
-
-    }else if(game_state_id == 'stop'){
-      this.doDestroyTimer();
-      this.doButtonState('start_button','enable');
-      this.doButtonState('stop_button','disable');
-    }
-  }
-  onClickStartGame(){
-    this.handleGameState('start');
-  }
-  onClickStopGame(){
-    this.handleGameState('stop');
-  }
-
-  // constructur, lifecycle hooks
-  constructor() {
-    // this.initTimer();
-  }
-  ngOnInit(): void {
-  }
+counter: number = 0;
+interval_in_milliseconds: number = 1000;
+doInitTimer(){
+  console.log('doInitTimer');
+  this.interval_instance = setInterval(() => { 
+    this.incrementTimer(); // passing the incrementTimer function in here so I have access to this.timer
+    }, this.interval_in_milliseconds);
 }
+incrementTimer(){
+  this.counter++;
+  console.log('counter ' + this.counter);
+}
+onClickGameButton(start_or_stop:string){
+  // TODO: replace the start or stop with a method that sees which id of button was pressed
+  console.log('onClickGameButton ' + start_or_stop);
+  this.game_is_running = start_or_stop == 'start';
+  (this.game_is_running)?this.doInitTimer():this.doDestroyTimer();
+  this.game_state_text = (this.game_is_running)?this.game_state_text_yes:this.game_state_text_no;
+}
+```
+game-control.component.html...
+```
+<button 
+    class="btn btn-primary mr-5"
+    [disabled]="game_is_running" 
+    (click)="onClickGameButton('start')" 
+    id="start_button"
+>Start</button>
+<button 
+    class="btn btn-primary" 
+    [disabled]="!game_is_running"
+    (click)="onClickGameButton('stop')"
+    id="stop_button"
+>Stop</button>
+<p>{{game_state_text}}</p>
 ```
 
 ### 4. The event should be listenable from outside the component
@@ -119,6 +85,12 @@ export class GameControlComponent implements OnInit {
 ### 7. Simply output Odd - NUMBER or Even - NUMBER in the two components
 
 ### 8. Style the element (e.g. paragraph) holding your output text differently in both components
+
+### X. Extra Credit (Requirements that I made up)
+
+* disable start button if game is running
+* disable stop button if game is not running
+* display the current game state ala 'the game is running' / 'the game is not running'
 
 ## Up And Running
 ```

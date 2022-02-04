@@ -1,10 +1,14 @@
 <button 
     class="btn btn-primary mr-5"
     [disabled]="game_is_running" 
+    (click)="onClickGameButton('start')" 
+    id="start_button"
 >Start</button>
 <button 
     class="btn btn-primary" 
     [disabled]="!game_is_running"
+    (click)="onClickGameButton('stop')"
+    id="stop_button"
 >Stop</button>
 <p>{{game_state_text}}</p>
 
@@ -12,6 +16,7 @@
 TODO: why isn't mr-5 applying a margin to the "Start Game" button?  Section 23 of Angular class may help?
 
 TODO: move to readme.MD when the assignment is complete
+
 In the code below the code 
 * `[disabled]="game_is_running"` is Property Binding
 * `{{start_button_text}}` is String Interpolation 
