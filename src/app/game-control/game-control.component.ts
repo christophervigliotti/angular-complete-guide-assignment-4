@@ -7,26 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameControlComponent implements OnInit {
 
-  // constants
+  // constantsFunction
   counter: number = 0;
   interval_in_milliseconds: number = 1000;
 
   // properties
-  interval_instance: Function; 
+  game_is_running: boolean = false;
+  interval_instance: any; // TODO: need a better (more specific) way of declaring the type here
   timer_enabled: boolean = false;
+  game_state_text: string = 'the game is not running';
 
   /* 
-  methods 
+  the method to my method naming madness... 
     prefix  what it does
     ------  ------------
     do      do a thing
     handle  do multiple things
     on      when a thing happens
   */
-  doButtonState(button_id: string, enable_or_disable:string){
+  doButtonState(){
     // this is not the Angular way to do it (and we don't have access to jQuery here...TODO: resolve this $('#' + button_id).(enable_or_disable);    
   }
-  // 
+  doGameStateText(){
+
+  }
   doDestroyTimer(){
     clearInterval(this.interval_instance);
   }
@@ -39,17 +43,14 @@ export class GameControlComponent implements OnInit {
       }, 
       this.interval_in_milliseconds);
   }
+  // TODO: use event binding
   handleGameState(game_state_id:string){
     // if there were more than two states the conditional logic here should be a case statement
     if(game_state_id == 'start'){
       this.doInitTimer();
-      this.doButtonState('start_button','disable');
-      this.doButtonState('stop_button','enable');
 
     }else if(game_state_id == 'stop'){
       this.doDestroyTimer();
-      this.doButtonState('start_button','enable');
-      this.doButtonState('stop_button','disable');
     }
   }
   onClickStartGame(){
@@ -61,7 +62,6 @@ export class GameControlComponent implements OnInit {
 
   // constructur, lifecycle hooks
   constructor() {
-    // this.initTimer();
   }
   ngOnInit(): void {
   }
