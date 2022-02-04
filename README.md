@@ -91,6 +91,9 @@ game-control.component.html...
 * disable start button if game is running - handled via `[disabled]="!game_is_running"`
 * disable stop button if game is not running - handled via `[disabled]="game_is_running"`
 * display the current game state ala 'the game is running' / 'the game is not running' - `<p>{{game_state_text}}</p>` updates via `this.game_state_text = (this.game_is_running)?this.game_state_text_yes:this.game_state_text_no;` 
+* give the player three lives, losing one life every time they hit an odd number `this.number_of_lives = (odd_or_even == 'odd')?(this.number_of_lives -1):this.number_of_lives;`
+* every time the player stops on even make the next round of the game more difficult `(odd_or_even == 'even')?(this.interval_in_milliseconds = Math.max((this.interval_in_milliseconds - 150),100)):'do_nothing';`
+* end the game when they reach zero lives
 
 ## Up And Running
 ```

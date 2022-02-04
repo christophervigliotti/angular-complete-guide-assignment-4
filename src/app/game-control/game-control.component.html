@@ -1,13 +1,13 @@
 <button 
     class="btn btn-primary mr-5"
     [disabled]="game_is_running" 
-    (click)="onClickGameButton('start')" 
+    (click)="onClickGameButton($event)" 
     id="start_button"
 >Start</button>
 <button 
     class="btn btn-primary" 
     [disabled]="!game_is_running"
-    (click)="onClickGameButton('stop')"
+    (click)="onClickGameButton($event)"
     id="stop_button"
 >Stop</button>
 <p>{{game_state_text}}</p>
