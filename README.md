@@ -78,7 +78,15 @@ game-control.component.html...
 
 ### 4. The event should be listenable from outside the component
 
-TODO: current focus
+OK so I'm working out how to complete this requirement.  I am going to do the following outside of the scope of this game (but on this space) so that I have a command over how to pass data from one component to another.
+#### 1. Pass data from Parent Component to Child Component
+
+#### 2. Pass data from Child Component to Parent Component
+
+#### 3. Pass data from Child Component to another Child Component (siblings)
+
+#### 4. (I might not tackle this one but we shall see) Pass data between non-related Components (components with no direct relationship)
+* for communication between non-related components, services are used.  Like I said I might not tackle this one because I have not covered Services yet
 
 ### 5. When stopping the game, no more events should get emitted (clearInterval(ref))
 
@@ -90,9 +98,9 @@ TODO: current focus
 
 ### X. Extra Credit (Requirements that I made up)
 
-* disable start button if game is running - handled via `[disabled]="!game_is_running"`
-* disable stop button if game is not running - handled via `[disabled]="game_is_running"`
-* display the current game state ala 'the game is running' / 'the game is not running' - `<p>{{game_state_text}}</p>` updates via `this.game_state_text = (this.game_is_running)?this.game_state_text_yes:this.game_state_text_no;` 
+* disable start button if game is running - handled via Property Binding `[disabled]="!game_is_running"`
+* disable stop button if game is not running - handled via Property Binding `[disabled]="game_is_running"`
+* display the current game state ala 'the game is running' / 'the game is not running' - String Interpolation `<p>{{game_state_text}}</p>` updates via `this.game_state_text = (this.game_is_running)?this.game_state_text_yes:this.game_state_text_no;` 
 * give the player three lives, losing one life every time they hit an odd number `this.number_of_lives = (odd_or_even == 'odd')?(this.number_of_lives -1):this.number_of_lives;`
 * every time the player stops on even make the next round of the game more difficult `(odd_or_even == 'even')?(this.interval_in_milliseconds = Math.max((this.interval_in_milliseconds - 150),100)):'do_nothing';`
 * end the game when they reach zero lives...
@@ -119,6 +127,8 @@ doHandleGameIsOver(){
 * add a reset game button
 * add a high score
 * shoehorn in a random ngClass call since I am reviewing past lesson `[ngClass]="{you_can_do_it: 1 == 1}"` applies class you_can_do_it if 1 is equal to 1 lol
+* goof around with ngFor - done and commented out
+* access url parameter 'retry'...if present, then tell user 'welcome back'
 
 ## Up And Running
 ```

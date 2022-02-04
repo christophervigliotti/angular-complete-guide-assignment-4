@@ -17,7 +17,7 @@
         [ngClass]="{you_can_do_it: 1 == 1}"
     >{{game_state_text}}</p>
 
-    <p *ngIf="game_over;else game_not_over">You can no longer do it.  GAME OVER!</p><!-- this is a directive -->
+    <p *ngIf="game_over;else game_not_over">You can no longer do it.  GAME OVER!  <a href="?retry">Try Again</a></p><!-- this is a directive -->
     <ng-template #game_not_over><p>You can do it!</p></ng-template>
     <!--
         playing around with ngFor
