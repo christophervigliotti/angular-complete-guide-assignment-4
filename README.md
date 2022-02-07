@@ -78,12 +78,12 @@ game-control.component.html...
 
 ### 4. The event should be listenable from outside the component
 
+OK so I'm working out how to complete this requirement.  I am going to implement some requirements that are outside of the scope of the assignment.  This will give me command over how to pass data from one component to another.  This is covered in "4.A" below...
+
 #### 4.A Deep Dive Into Passing Data Between Components
 
-* lesson at https://medium.com/weekly-webtips/how-to-pass-data-between-components-in-angular-8-c6bfc0358cd2 
+* big thanks to https://medium.com/weekly-webtips/how-to-pass-data-between-components-in-angular-8-c6bfc0358cd2 
 
-OK so I'm working out how to complete this requirement.  I am going to implement the following requirements that are outside of the scope of the assignment.  This will give me command over how to pass data from one component to another.  
-  
 I'm going to create two new child components to work from...
 ```
 ng g c child1
@@ -92,7 +92,13 @@ ng g c child2
 
 ##### 4.A.1 Pass data from Parent Component to Child Component
 
+works great!
+
 ##### 4.A.2 Pass data from Child Component to Parent Component
+
+Notes divided into two subsections
+* 4.A.2.a (which uses ViewChild()) currently not working (sent a question to the author of the tutorial)
+* 4.A.2.b (which uses @Output() decorator and EventEmitter()) (work in-progress) (throws errors...going to abandon this effort and find a more comprehensive tutorial)
 
 ##### 4.A.3 Pass data from Child Component to another Child Component (siblings)
 

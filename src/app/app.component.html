@@ -37,7 +37,22 @@
         </div>
       </form>
       <app-child1 [msgFromParent1]='currentMsgToChild1'></app-child1>
-      <h3>4.A.2 Pass data from Child Component to Parent Component</h3>
+      <h3>4.A.2.a Pass data from Child Component to Parent Component</h3>
+      <hr />
+
+      <!-- ADDED FROM AUTHOR STACKBLITZ 4.A.2.a
+      <div class="receivedMessages">
+        <div class="child1">
+          <p><b>Message from Child1</b><br> via ChildView():</p>
+          <p>{{ currentMsgToParent }}</p>
+          <ul *ngFor="let item of msgFromChild1">
+            <li>{{ item }}</li>
+          </ul>
+        </div>
+      </div>
+      -->
+      <app-child2 (callParent)='getMsgFromBaby($event)'></app-child2>
+
     </div>
   </div>
 </div>
