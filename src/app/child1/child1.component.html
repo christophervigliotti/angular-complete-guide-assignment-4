@@ -1,1 +1,20 @@
-<p>child1.component.html says: msgFromParent = "{{ msgFromParent1 }}"</p>
+<p>4.A.1 child1.component.html says: msgFromParent = "{{ msgFromParent1 }}"</p>
+<form>
+    <div class="form-group">
+        4.A.2 an input with double-binding for variable currentMsgToParent...
+        <br />
+        <!-- Create an input with double-binding for the newly created variable currentMsgToParent, 4.A.2 -->
+        <input 
+            type="text" 
+            [(ngModel)]="currentMsgToParent" 
+            name="currentMsgToParent_name" 
+            class="form-control"
+        />
+        <br />
+        <!-- Use event binding to fire the function, 4.A.2 -->
+        <button 
+            (click)="msgToParent()" 
+            class="btn btn-primary" 
+        >4.A.2 a button that uses event binding to fire function msgToParent()</button>    
+    </div>    
+</form>

@@ -20,24 +20,23 @@
     <div class="col-xs-12">
       <hr />
       <h2 class="display-2">4.A Deep Dive Into Passing Data Between Components</h2>
+      <h3 class="display-3">4.A.1 Pass data from Parent Component to Child Component</h3>
       <form>
         <div class="form-group">
           <input 
             type="text"
             [(ngModel)]="currentMsgToChild1" 
-            name="currentMsgToChild1" 
+            name="currentMsgToChild1_name" 
             placeholder="4.A.1 Pass data from Parent Component to Child Component" 
             class="form-control"
           />
           <input 
             type="reset" 
-            class="btn btn-primary" 
-            value="Reset (4.A.1)"
+            class="btn btn-primary"
           />
         </div>
       </form>
       <app-child1 [msgFromParent1]='currentMsgToChild1'></app-child1>
-      <h3>4.A.2 Pass data from Child Component to Parent Component</h3>
     </div>
   </div>
 </div>
