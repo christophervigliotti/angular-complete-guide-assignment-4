@@ -78,7 +78,7 @@ game-control.component.html...
 
 ### 4. The event should be listenable from outside the component
 
-TODO: current focus
+TODO: current focus...next up, do this: "You can pass values from a child to a parent component using (event binding) in the parent and @Output() in the child."...review 64-83
 
 ### 5. When stopping the game, no more events should get emitted (clearInterval(ref))
 
