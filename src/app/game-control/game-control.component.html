@@ -19,6 +19,7 @@
 
     <p *ngIf="game_over;else game_not_over">You can no longer do it.  GAME OVER!</p><!-- this is a directive -->
     <ng-template #game_not_over><p>You can do it!</p></ng-template>
+
     <!--
         playing around with ngFor
         <p *ngFor="let latest_element of console_log_calls" style="background-color:#BEBEBE;">{{latest_element}}</p>

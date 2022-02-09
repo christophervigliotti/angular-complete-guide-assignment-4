@@ -7,7 +7,20 @@
       </h1>
     </div>
     <div class="col-xs-12">
-      <app-game-control></app-game-control>
+      <app-game-control
+        (incrementTimerEventEmitter)="onIncrementTimerEvent($event)" 
+        (gameStartStopStateChangeEventEmitter)="onGameStartStopStateChangeEvent($event)" 
+      ></app-game-control>
+    </div>
+
+    <div class="col-xs-12">
+      <hr style="color:black;" />
+      <h2>Sending data to a parent component</h2>
+      <p>via https://angular.io/guide/inputs-outputs#sending-data-to-a-parent-component</p>
+      <app-item-output (newItemEvent)="addItem($event)"></app-item-output>
+      <ul>
+        <li *ngFor="let item of items">{{item}}</li>
+      </ul>  
     </div>
   </div>
 </div>

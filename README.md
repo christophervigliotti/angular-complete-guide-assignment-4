@@ -78,9 +78,57 @@ game-control.component.html...
 
 ### 4. The event should be listenable from outside the component
 
-TODO: current focus...next up, do this: "You can pass values from a child to a parent component using (event binding) in the parent and @Output() in the child."...review 64-83
+This one took a bit of work because it wasn't clicking that the parent's view has to be involved in the flow.  First I got the "child-to-parent" communication working using a separate tutorial (using child component 'child-component', https://angular.io/guide/inputs-outputs#sending-data-to-a-parent-component).  Then I implemented two eventEmitters...one when the game starts or stops and one when the counter value changes.
+
+#### In The Child Component 
+```
+// game-control.component.ts...
+// declare event emitters
+@Output() gameStartStopStateChangeEventEmitter = new EventEmitter<boolean>();
+@Output() incrementTimerEventEmitter = new EventEmitter<number>();
+// emit the counter event (found in function incrementTimer())
+this.incrementTimerEventEmitter.emit(this.counter);
+// emit the game start event (found in function incrementTimer())
+this.gameStartStopStateChangeEventEmitter.emit(true);
+// emit the game stop event (found in function doDestroyTimer())
+this.gameStartStopStateChangeEventEmitter.emit(false);
+
+```
+#### In the Child Template
+```
+/*
+My events are being emitted via custom functions (and not directly via child template changes)...as such ho changes were made to the child component.  Note that I could trigger an event via event binding...which I did during tinkering 
+*/
+// item-output.component.html...
+<label for="item-input">Add an item:</label>
+<input type="text" id="item-input" #newItem>
+<button type="button" (click)="addNewItem(newItem.value)">Add to parent's list</button>
+*/
+```
+#### In the Parent Component 
+```
+// app.component.ts...
+onGameStartStopStateChangeEvent(game_is_running){
+  console.log('app > onGameStartStopStateChangeEvent(), game_is_running ' + game_is_running);
+}
+onIncrementTimerEvent(counter){
+  console.log('app > onIncrementTimerEvent(), counter ' + counter);
+}
+```
+#### In The Parent Template
+
+This piece is what stitches the event emitters in the child to the methods in the parent. I wonder if there is a way to do this connection between child and parent without using code in the parent template.
+```
+// app.component.html
+<app-game-control
+  (incrementTimerEventEmitter)="onIncrementTimerEvent($event)" 
+  (gameStartStopStateChangeEventEmitter)="onGameStartStopStateChangeEvent($event)" 
+></app-game-control>
+```
 
 ### 5. When stopping the game, no more events should get emitted (clearInterval(ref))
+
+This is handled in the child (because when the game stops no more events are emitted).
 
 ### 6. A new Odd component should get created for every odd number emitted, the same should happen for the Even Component (on even numbers)
 
