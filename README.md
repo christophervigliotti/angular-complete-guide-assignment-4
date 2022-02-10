@@ -4,7 +4,7 @@ This is one of several repos that I created for the course "Angular - The Comple
 
 ## Current Focus
 
-Working on Requirement 6
+Taking a well-deserved victory lap.  This assignment is complete!
 
 ## Requirements, Notes
 
@@ -133,15 +133,41 @@ This is handled in the child (because when the game stops no more events are emi
 
 Note: the variable names here are oddly (pun intended) specific.
 
-in app.component.ts
+#### 6.A odd.component.* 
+
+(similar code found in even.component.ts)  
+
+We define a variable the defines our component.  If the code was `property_from_component_odd:{the_number: 0;};` it would only be accsssible from within itself (and not to other components).  Adding `@Input()` converts this property into one that is bindable to the parent template. 
 ```
-odds_property_from_app = [{
-  // the_number: 0*
-}];
+// component
+@Input() property_from_component_odd:{
+  the_number: 0;
+};
+
+// template
+<p>{{property_from_component_odd.the_number}}</p>
 ```
 
-in app.component.html
+#### app.component.ts
+
+Here we connect the input property from the child to an array of properties of the parent (via local_var_odd). Method `onGameStartStopStateChangeEvent` updates odds_property_from_app.  When the property updates the code in the template will automagically summon that new element in the array and loop through the child view code 
 ```
+// component
+odds_property_from_app = [{
+  // the_number: 0 this was commented out (see code for details)
+}];
+onGameStartStopStateChangeEvent(game_is_running){
+  console.log('app > onGameStartStopStateChangeEvent(), game_is_running ' + game_is_running);
+  if(!game_is_running){
+    if(this.counter % 2 === 0){ // if even
+      this.evens_property_from_app.push({the_number: this.counter});
+    }else{ // else odd
+      this.odds_property_from_app.push({the_number: this.counter});
+    }
+  }
+}
+
+// template
 <div class="col-xs-6">
   <h2 class="display-2">The Odds</h2>
   <app-odd
@@ -150,21 +176,14 @@ in app.component.html
   ></app-odd>      
 </div>
 ```
-in odd.component.ts (similar code in even.component.ts)
-```
-@Input() property_from_component_odd:{
-  the_number: 0;
-};
-```
-
-in odd.component.html
-```
-<p>{{property_from_component_odd.the_number}}</p>
-```
 
 ### 7. Simply output Odd - NUMBER or Even - NUMBER in the two components
 
+Done!
+
 ### 8. Style the element (e.g. paragraph) holding your output text differently in both components
+
+Done!
 
 ### X. Extra Credit (Requirements that I made up)
 
