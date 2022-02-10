@@ -4,7 +4,7 @@ This is one of several repos that I created for the course "Angular - The Comple
 
 ## Current Focus
 
-Working on Requirement 3...
+Working on Requirement 6
 
 ## Requirements, Notes
 
@@ -78,7 +78,7 @@ game-control.component.html...
 
 ### 4. The event should be listenable from outside the component
 
-This one took a bit of work because it wasn't clicking that the parent's view has to be involved in the flow.  First I got the "child-to-parent" communication working using a separate tutorial (using child component 'child-component', https://angular.io/guide/inputs-outputs#sending-data-to-a-parent-component).  Then I implemented two eventEmitters...one when the game starts or stops and one when the counter value changes.
+This one took a bit of work because it wasn't clicking that the parent's view has to be involved in the flow.  First I got the "child-to-parent" communication working using a separate tutorial (using child component 'child-component', https://angular.io/guide/inputs-outputs#sending-data-to-a-parent-component).  Once I had a handle on how things were connected I turned my attention back to the requirement.  I implemented two eventEmitters...one when the game starts or stops and one when the counter value changes.
 
 #### In The Child Component 
 ```
@@ -103,7 +103,6 @@ My events are being emitted via custom functions (and not directly via child tem
 <label for="item-input">Add an item:</label>
 <input type="text" id="item-input" #newItem>
 <button type="button" (click)="addNewItem(newItem.value)">Add to parent's list</button>
-*/
 ```
 #### In the Parent Component 
 ```
@@ -119,7 +118,7 @@ onIncrementTimerEvent(counter){
 
 This piece is what stitches the event emitters in the child to the methods in the parent. I wonder if there is a way to do this connection between child and parent without using code in the parent template.
 ```
-// app.component.html
+// app.component.html...
 <app-game-control
   (incrementTimerEventEmitter)="onIncrementTimerEvent($event)" 
   (gameStartStopStateChangeEventEmitter)="onGameStartStopStateChangeEvent($event)" 
@@ -131,6 +130,37 @@ This piece is what stitches the event emitters in the child to the methods in th
 This is handled in the child (because when the game stops no more events are emitted).
 
 ### 6. A new Odd component should get created for every odd number emitted, the same should happen for the Even Component (on even numbers)
+
+Note: the variable names here are oddly (pun intended) specific.
+
+in app.component.ts
+```
+odds_property_from_app = [{
+  // the_number: 0*
+}];
+```
+
+in app.component.html
+```
+<div class="col-xs-6">
+  <h2 class="display-2">The Odds</h2>
+  <app-odd
+    *ngFor="let local_var_odd of odds_property_from_app" 
+    [property_from_component_odd]="local_var_odd"
+  ></app-odd>      
+</div>
+```
+in odd.component.ts (similar code in even.component.ts)
+```
+@Input() property_from_component_odd:{
+  the_number: 0;
+};
+```
+
+in odd.component.html
+```
+<p>{{property_from_component_odd.the_number}}</p>
+```
 
 ### 7. Simply output Odd - NUMBER or Even - NUMBER in the two components
 

@@ -18,6 +18,7 @@ export class GameControlComponent
   // properties, @Output
   @Output() gameStartStopStateChangeEventEmitter = new EventEmitter<boolean>();
   @Output() incrementTimerEventEmitter = new EventEmitter<number>();
+  
   // properties
   counter: number = 0;
   game_state_text: string = 'the game is not running';
@@ -69,7 +70,7 @@ export class GameControlComponent
     this.game_state_text = ((this.game_is_running)?this.game_state_text_yes:this.game_state_text_no) + ', number of lives: ' + this.number_of_lives;
   }
 
-  // constructur & lifecycle hook methods
+  // constructor & lifecycle hook methods
   constructor() {
   }
   ngOnInit(): void {

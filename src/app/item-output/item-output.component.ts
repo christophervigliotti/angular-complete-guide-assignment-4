@@ -14,7 +14,7 @@ export class ItemOutputComponent implements OnInit {
     this.newItemEvent.emit(value);
   }
 
-  // constructur & lifecycle hook methods
+  // constructor & lifecycle hook methods
   constructor() {
   }
   ngOnInit(): void {

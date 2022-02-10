@@ -13,6 +13,23 @@
       ></app-game-control>
     </div>
 
+    <div class="col-xs-6">
+      <h2 class="display-2">The Odds</h2>
+      <app-odd
+        *ngFor="let local_var_odd of odds_property_from_app" 
+        [property_from_component_odd]="local_var_odd"
+      ></app-odd>      
+    </div>
+
+    <div class="col-xs-6">
+      <h2 class="display-2">The Evens</h2>            
+      <app-even
+        *ngFor="let local_var_even of evens_property_from_app" 
+        [property_from_component_even]="local_var_even" 
+      ></app-even>
+    </div>
+
+    <!--
     <div class="col-xs-12">
       <hr style="color:black;" />
       <h2>Sending data to a parent component</h2>
@@ -22,5 +39,6 @@
         <li *ngFor="let item of items">{{item}}</li>
       </ul>  
     </div>
+    -->
   </div>
 </div>
